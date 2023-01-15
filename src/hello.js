@@ -3,7 +3,12 @@ import React, { Component } from "react";
 export default class Hello extends Component {
     constructor() {
         super();
-        this.state = { color: "red", digit: 0}; //состояние 
+        this.state = { 
+        color: "red", 
+        digit: 0,
+        list: [{title:"First"}, {title:"Second"}, {title:"Third"}]
+        
+    }; //состояние 
     }
 
     componentDidMount(){
@@ -14,11 +19,20 @@ export default class Hello extends Component {
         console.log("componentDidMount");
     }
 
+    renderListItem({item, index}){
+        return <div key={`${item.title}`}>{item.title}</div>
+    }
 
+    renderList(){
+        return this.state.list.map((item, index)=>{
+            
+            return this.renderListItem({item, index});
+        }) ;
+    }
 
     render(){
-        console.log("render");
-        return 
+        console.log("renderkkk");
+        return (
         <div>
             <div onClick={()=>{
                 //this.state = { color: "yellow" } неработает
@@ -27,7 +41,9 @@ export default class Hello extends Component {
             >
                 Hello
             </div>
-            <div>[this.state.digit]</div>
+            <div>{this.state.digit}</div>
+            {this.renderList()}
         </div>
+        )
     }
 }
