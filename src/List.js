@@ -5,28 +5,64 @@ export default class List extends Component {
     constructor() {
         super();
         this.state = { 
-        color: "red", 
-        digit: 10, 
-        list: [{title:"First"}, {title:"Second"}, {title:"Third"}]
-    }; //состояние 
+            errorMessage: '',
+            listitem: '',
+            list: ["First", "Second", "Third"]
+        }; //состояние 
+        
+            
+        
     }
 
+
+
+    
     addItem(){
+        
+        const handleSubmit = e=>{
+            e.preventDefault();
+            let newitem = this.state.listitem
+            if (newitem == '' || newitem.match("[a-zA-Zs]+") != null) {
+                this.setState(previousState => ({
+                    list : [...previousState.list, newitem],
+                    listitem: '',
+                    errorMessage : ''
+                }))
+            } else  {
+                this.setState(previousState => ({
+                    errorMessage : "Wrong value! Only alphabet characters"
+                }))
+            }
+            
+        }
+        const handleChange = e=>
+        {
+            let newitem = e.target.value;
+            console.log(newitem);
+            this.setState({ listitem: newitem});
+        }
+        const handleMouseOver = e => {
+            e.target.style = "height:30px;width:120px;"
+
+        }
+        const handleMouseLeave = e => {
+            e.target.style = "height:25px;width:100px;"
+
+        }
         return(
             <div>
-                
-                <button onClick={()=>{
-                    this.setState(previousState => ({
-                        list : [...previousState.list, {title: previousState.list.length+1}]
-                    }))
-                }}>ADD ITEM</button>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" value={this.state.listitem} onChange={handleChange}  required/>
+                    <span className="error">{this.state.errorMessage}</span>
+                    <button type="submit" className="buttonadd" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>ADD ITEM</button>
+                </form>
             </div>
         )
     }
     deleteItem(){
         return(
             <div>
-                <button onClick={()=>{
+                <button className="buttonremove" onClick={()=>{
                     this.setState(previousState => ({
                         list : [...previousState.list.slice(0, -1)]
                     }))
@@ -39,13 +75,13 @@ export default class List extends Component {
         console.log("renderList");
         return (
         <div>
-            <div>
+            <div className="List">
                 <ShowList obj={this.state}/>
             </div>
-            <div>
+            <div >
                 {this.addItem()}
             </div>
-            <div>
+            <div >
                 {this.deleteItem()}
             </div>
         </div>

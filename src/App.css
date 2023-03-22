@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.buttonadd{
+  margin: 10px
+}
+.buttonremove{
+  margin: 20px
+}
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+span {
+  color: red;
+}
