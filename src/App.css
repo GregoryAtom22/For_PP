@@ -14,6 +14,7 @@
 }
 
 .App-header {
+  animation: backcolorchange 5s infinite;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -23,7 +24,13 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+@keyframes backcolorchange{
+  20%{background-color: #282c34;}
+  40%{background-color: #2e3749;}
+  60%{background-color: #253b63;}
+  80%{background-color: #2a3242;}
+  100%{background-color: #282c34;}
+}
 .App-link {
   color: #61dafb;
 }
@@ -38,19 +45,44 @@
 }
 
 
-.buttonadd{
-  margin: 10px
+button {
+  transition-duration: 0.4s;
+  background-color: #94abe4;
+  border-radius: 4px;
+  margin: 0px 12px;
 }
-.buttonremove{
-  margin: 20px
+
+button:hover {
+  background-color: #4672e2; 
+  color: rgb(0, 0, 0);
 }
 form {
-  margin-top: 10px;
+  margin: 20px;
+  padding: 5px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
-span {
+.forminner{
+  align-self: flex-start;
+}
+
+.likeForm {
+  margin: 10px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.error{
   color: red;
+  font-size: small;
+  padding: 0;
+  margin: 0;
+}
+input{
+  border-radius: 4px;
 }

@@ -10,12 +10,7 @@ export default class List extends Component {
             list: ["First", "Second", "Third"]
         }; //состояние 
         
-            
-        
     }
-
-
-
     
     addItem(){
         
